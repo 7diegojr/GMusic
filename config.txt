@@ -34,7 +34,7 @@ Instalar extensão de pesquisa React -> ES7+ react/redux/react
 ------------------------------------------------------------------------------
 
 GITHUB:
-X° Commit - Criação do projeto e início do desenvolvimento
+2° Commit - Estilização do footer, Image Wrapper e adicionando assets
 pagina 
 
 color highlight
