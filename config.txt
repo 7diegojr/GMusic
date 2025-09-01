@@ -12,9 +12,9 @@ git config --global user.email dfsntsjunior@gmail.com
 
 - Atualizar os pacotes do Node e adicionar bibliotecas:
 npm i
-npm expo install react-dom react-native-web @expo/metro-runtime
-npm expo install @react-native-community/slider
-npm expo install expo-av
+npx expo install react-dom react-native-web @expo/metro-runtime
+npx expo install @react-native-community/slider
+npx expo install expo-av
 
 ------------------------------------------------------------------------------
 

@@ -13,14 +13,38 @@ export default function App() {
 
         <View style={[style.imageWrapper, styles.elevation]}>
           <Image 
-            sourse={require('./assets/img/valdemir.png')}
+            sourse={require('./assets/img/palmeiras.png')}
             style={styles.musicImage}
             />
         </View>
 
         <View>
-          <Slider></Slider>
+          <Text style={[StyleSheet.songContent, styles.songTitle]}>Título do Hino</Text>
+          <Text style={[StyleSheet.songContent, styles.songArtist]}>Autor do Hino</Text>
         </View>
+
+        <View>
+          <Slider style={styles.progressBar} value= {10} minimumValue={0} maximumValue={100} 
+          thumbTintColor='#3adf74' minimumTrackTintColor='#3adf74' maximumTrackTintColor='#fff' onSlidingComplete={() => {}}
+          />
+          <View syle={styles.progressLevelDuration}>
+            <Text style={styles.progressLabelText}>00:00</Text>
+            <Text style={styles.progressLabelText}>00:00</Text>
+          </View>
+        </View>
+
+        <View style={styles.musicControlsContainer}>
+          <TouchableOpacity>
+            <Ionicons name='play-skip-back-outline' size={35} color="#3adf74"/>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Ionicons name='pause-circle' size={35} color="#3adf74"/>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Ionicons name='play-skip-forward-outline' size={35} color="#3adf74"/>
+          </TouchableOpacity>
+        </View>
+
 
       </View>
       <View style={styles.footer}>
@@ -47,7 +71,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#222831',
+    backgroundColor: '#121212',
   },
   main: {
     flex: 1,
@@ -64,7 +88,7 @@ const styles = StyleSheet.create({
   iconWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '80%'
+    width: '80%',
   },
   imageWrapper: {
     width: 340,
@@ -75,14 +99,47 @@ const styles = StyleSheet.create({
     elevantion: 5,
     shadowOffset: {
       width: 5,
-      height: 5
+      height: 5,
     },
     shadowOpacity: 0.5,
-    shadowRadius: 3.84
+    shadowRadius: 3.84,
   },
   musicImage: {
     width: '100%',
     height: '100%',
-    borderRaidius: 15
+    borderRaidius: 15,
   },
+  songContent: {
+    textAlign: 'center',
+    color: '#eeeeee',
+  },
+  songTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+  },
+  songArtist: {
+    fontSize: 16,
+    fontWeight: '300',
+  },
+  progressBar: {
+    width: 350,
+    height: 40,
+    marginTop: 20,
+  },
+  progressLevelDuration: {
+    width: 340,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  progressLabelText: {
+    color: '#fff',
+    fontWeight: '500',
+  },
+  musicControlsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '60%',
+    marginTop: 10,
+  }
 });
