@@ -11,23 +11,23 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
 
-        <View style={[style.imageWrapper, styles.elevation]}>
+        <View style={[styles.imageWrapper, styles.elevation]}>
           <Image 
-            sourse={require('./assets/img/palmeiras.png')}
+            source={require('./assets/img/palmeiras.png')}
             style={styles.musicImage}
             />
         </View>
 
         <View>
-          <Text style={[StyleSheet.songContent, styles.songTitle]}>Título do Hino</Text>
-          <Text style={[StyleSheet.songContent, styles.songArtist]}>Autor do Hino</Text>
+          <Text style={[styles.songContent, styles.songTitle]}>Título do Hino</Text>
+          <Text style={[styles.songContent, styles.songArtist]}>Autor do Hino</Text>
         </View>
 
         <View>
           <Slider style={styles.progressBar} value= {10} minimumValue={0} maximumValue={100} 
           thumbTintColor='#3adf74' minimumTrackTintColor='#3adf74' maximumTrackTintColor='#fff' onSlidingComplete={() => {}}
           />
-          <View syle={styles.progressLevelDuration}>
+          <View style={styles.progressLevelDuration}>
             <Text style={styles.progressLabelText}>00:00</Text>
             <Text style={styles.progressLabelText}>00:00</Text>
           </View>
@@ -38,7 +38,7 @@ export default function App() {
             <Ionicons name='play-skip-back-outline' size={35} color="#3adf74"/>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Ionicons name='pause-circle' size={35} color="#3adf74"/>
+            <Ionicons name='pause-circle' size={75} color="#3adf74"/>
           </TouchableOpacity>
           <TouchableOpacity>
             <Ionicons name='play-skip-forward-outline' size={35} color="#3adf74"/>
@@ -48,7 +48,7 @@ export default function App() {
 
       </View>
       <View style={styles.footer}>
-        <View styles={styles.iconWrapper}>
+        <View style={styles.iconWrapper}>
           <TouchableOpacity>
             <Ionicons name='heart-outline' size={30} color="#888888" />
           </TouchableOpacity>
@@ -59,7 +59,7 @@ export default function App() {
             <Ionicons name='share-outline' size={30} color="#888888" />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Ionicons name='ellipsis-horinzontal' size={30} color="#888888" />
+            <Ionicons name='ellipsis-horizontal' size={30} color="#888888" />
           </TouchableOpacity>
         </View>
       </View>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   musicImage: {
     width: '100%',
     height: '100%',
-    borderRaidius: 15,
+    borderRadius: 15,
   },
   songContent: {
     textAlign: 'center',
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   progressLevelDuration: {
     width: 340,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   progressLabelText: {
     color: '#fff',
