@@ -1,22 +1,38 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image, FlatList } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Slider from '@react-native-community/slider'
+import songs from './model/data';
+import { FlatList } from 'react-native-web';
 
 const { width, height } = Dimensions.get('window');
+const renderSongs = ({ item, index }) => {
+  return (
+
+    <View style={styles.mainImageWrapper}>
+      <View style={[styles.imageWrapper, styles.elevation]}>
+        <Image source={item.artwork} style={styles.musicImage}/>
+      </View>
+    </View>
+  )
+};
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
 
-        <View style={[styles.imageWrapper, styles.elevation]}>
-          <Image 
-            source={require('./assets/img/palmeiras.png')}
-            style={styles.musicImage}
-            />
-        </View>
+        <FlatList
+          data={songs}
+          keyExtractor={item => item.id}
+          renderItem={renderSongs}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={16}
+          onScroll={() => { }}
+        />
 
         <View>
           <Text style={[styles.songContent, styles.songTitle]}>Título do Hino</Text>
@@ -24,8 +40,8 @@ export default function App() {
         </View>
 
         <View>
-          <Slider style={styles.progressBar} value= {10} minimumValue={0} maximumValue={100} 
-          thumbTintColor='#3adf74' minimumTrackTintColor='#3adf74' maximumTrackTintColor='#fff' onSlidingComplete={() => {}}
+          <Slider style={styles.progressBar} value={10} minimumValue={0} maximumValue={100}
+            thumbTintColor='#3adf74' minimumTrackTintColor='#3adf74' maximumTrackTintColor='#fff' onSlidingComplete={() => { }}
           />
           <View style={styles.progressLevelDuration}>
             <Text style={styles.progressLabelText}>00:00</Text>
@@ -35,13 +51,13 @@ export default function App() {
 
         <View style={styles.musicControlsContainer}>
           <TouchableOpacity>
-            <Ionicons name='play-skip-back-outline' size={35} color="#3adf74"/>
+            <Ionicons name='play-skip-back-outline' size={35} color="#3adf74" />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Ionicons name='pause-circle' size={75} color="#3adf74"/>
+            <Ionicons name='pause-circle' size={75} color="#3adf74" />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Ionicons name='play-skip-forward-outline' size={35} color="#3adf74"/>
+            <Ionicons name='play-skip-forward-outline' size={35} color="#3adf74" />
           </TouchableOpacity>
         </View>
 
@@ -77,6 +93,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  mainImageWrapper: {
+    width: width,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   footer: {
     width: width,
