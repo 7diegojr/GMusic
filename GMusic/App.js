@@ -7,11 +7,11 @@ import songs from './model/data';
 
 const { width, height } = Dimensions.get('window');
 
-const[sound, setSound] = useState(null);
-const[songIndex, setSongIndex] = useState(0);
-const[songStatus, setSongStatus] = useState(null);
-const[isPlaying, setPlaying] = useState(false);
-const[isLooping, useIsLooping] = useState(false);
+const [sound, setSound] = useState(null);
+const [songIndex, setSongIndex] = useState(0);
+const [songStatus, setSongStatus] = useState(null);
+const [isPlaying, setPlaying] = useState(false);
+const [isLooping, useIsLooping] = useState(false);
 
 const songSlider = useRef(null);
 const scrollX = useRef(new Animated.Value(0)).current;
@@ -37,6 +37,72 @@ const renderSongs = ({ item, index }) => {
 };
 
 export default function App() {
+
+  const loadSound = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      songs[songIndex].url
+    );
+    setSound(sound);
+    const status = await sound.getStatusAync();
+    await sound.setIsLoopingAsync(isLooping);
+    setSongStatus(status);
+    setIsPlaying(false);
+  };
+
+  useEffect(() => {
+    if (sound) {
+      sound.unloadAsync();
+    }
+    loadSound();
+    return () => {
+      if (sound) {
+        sound.unloadAsync();
+      }
+    }
+  }, [songIndex]);
+
+  const handlePlayPause = async () => {
+    if (isPlaying) {
+      await pause();
+    } else {
+      await play();
+    }
+  }
+
+  const play = async () => {
+    if (sound) {
+      setIsPlaying(true);
+      await sound.playAsync();
+    }
+  }
+
+  const pause = async () => {
+    if (sound) {
+      setIsPlaying(false);
+      await sound.pauseAsync();
+    }
+  }
+
+  const skipToNext = () => {
+
+
+  }
+
+  const skipToPrevious = () => {
+
+    
+  }
+
+  const stop = async () => {
+
+    
+  }
+
+  const repeat = async (value) => {
+
+  }
+
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
@@ -53,7 +119,7 @@ export default function App() {
             [
               {
                 nativeEvent: {
-                  contentOffset: { x : scrollX },
+                  contentOffset: { x: scrollX },
                 }
               }
             ],
@@ -77,13 +143,13 @@ export default function App() {
         </View>
 
         <View style={styles.musicControlsContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={skipToPrevious}>
             <Ionicons name='play-skip-back-outline' size={35} color="#3adf74" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handlePlayPause}>
             <Ionicons name='pause-circle' size={75} color="#3adf74" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={skipToNext}>
             <Ionicons name='play-skip-forward-outline' size={35} color="#3adf74" />
           </TouchableOpacity>
         </View>
